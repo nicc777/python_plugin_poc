@@ -128,8 +128,6 @@ class Plugins:
 
     def load_plugin_from_file(self, plugin_file_path: str):
         for returned_class, kind in get_modules_in_package(target_dir=plugin_file_path, logger=self.logger):
-            self.logger.info('> cls.__class__:       {}'.format(returned_class.__class__))
-            self.logger.info('> returned_class name: {}'.format(returned_class.__class__.__name__))
             self.register_plugin(plugin=returned_class(kind=kind, logger=self.logger))
         self.logger.info('Registered classes: {}'.format(list(self.plugin_register.keys())))
         
