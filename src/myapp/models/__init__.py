@@ -50,7 +50,11 @@ def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger(
                 logger.info('         type:       {}'.format(type(cls)))
                 logger.info('         cls.module: {}'.format(cls.__module__))
                 if cls.__module__ == module_name:
-                    yield cls
+                    # m = importlib.import_module('{}.{}'.format(cls.__module__, file_name))
+                    m = importlib.import_module('my_plugin')
+                    clazz = getattr(m, name)
+                    logger.info('         clazz.type: {}'.format(type(clazz)))
+                    yield clazz
 
 
 class ValuesAPI:
