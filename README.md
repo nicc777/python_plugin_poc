@@ -60,6 +60,8 @@ INFO    : Current values: {'random_word_length': 100, 'random_word': 'zNvV0hWqjP
 
 # Further Reading and Helpful Links
 
+The solution was implemented with hints/suggestions/answers from:
+
 * https://stackoverflow.com/questions/55067166/in-python-how-do-i-get-the-list-of-classes-defined-within-a-particular-file
 * https://stackoverflow.com/questions/3352258/dynamic-class-instantiation-in-python
 * https://stackoverflow.com/questions/49434118/python-how-to-create-a-class-object-using-importlib
