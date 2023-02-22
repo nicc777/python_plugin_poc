@@ -44,6 +44,7 @@ def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger(
             module_name = file_name
             logger.info('      module_name={}'.format(module_name))
             for name, cls in inspect.getmembers(importlib.import_module(module_name), inspect.isclass):
+                logger.info('         ---------------------------------------')
                 logger.info('         name:       {}'.format(name))
                 logger.info('         cls:        {}'.format(cls))
                 logger.info('         type:       {}'.format(type(cls)))
