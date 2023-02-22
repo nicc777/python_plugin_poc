@@ -22,16 +22,12 @@ class GenericLogger:
 
 
 def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger()):
-    # package_name = target_dir.split(os.sep)[-1]
-    # logger.info('package_name={}'.format(package_name))
     files = os.listdir(target_dir)
     logger.info('files={}'.format(files))
     base_path = '{}'.format(
         '/'.join(target_dir.split('/')[1:-1])
     )
-    # sys.path.insert(0,base_path)
     sys.path.insert(0,target_dir)
-    logger.info('sys.path={}'.format(sys.path))
     for file in files:
         logger.info('   inspecting file "{}"'.format(file))
         if file not in ['__init__.py', '__pycache__']:
@@ -46,14 +42,9 @@ def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger(
             for name, cls in inspect.getmembers(importlib.import_module(module_name), inspect.isclass):
                 logger.info('         ---------------------------------------')
                 logger.info('         name:       {}'.format(name))
-                logger.info('         cls:        {}'.format(cls))
-                logger.info('         type:       {}'.format(type(cls)))
-                logger.info('         cls.module: {}'.format(cls.__module__))
                 if cls.__module__ == module_name:
-                    # m = importlib.import_module('{}.{}'.format(cls.__module__, file_name))
                     m = importlib.import_module(module_name)
                     clazz = getattr(m, name)
-                    logger.info('         clazz.type: {}'.format(type(clazz)))
                     yield (clazz, name)
 
 
