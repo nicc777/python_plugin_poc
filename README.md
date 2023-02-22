@@ -58,3 +58,10 @@ INFO    : Retrieved keys from current values cache: ['random_word_length', 'rand
 INFO    : Current values: {'random_word_length': 100, 'random_word': 'zNvV0hWqjPdF', 'test': ['random_word_length', 'random_word']}
 ```
 
+# Further Reading and Helpful Links
+
+* https://stackoverflow.com/questions/55067166/in-python-how-do-i-get-the-list-of-classes-defined-within-a-particular-file
+* https://stackoverflow.com/questions/3352258/dynamic-class-instantiation-in-python
+* https://stackoverflow.com/questions/49434118/python-how-to-create-a-class-object-using-importlib
+
+
