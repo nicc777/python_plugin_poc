@@ -54,7 +54,7 @@ def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger(
                     m = importlib.import_module('my_plugin')
                     clazz = getattr(m, name)
                     logger.info('         clazz.type: {}'.format(type(clazz)))
-                    yield clazz
+                    yield (clazz, name)
 
 
 class ValuesAPI:
@@ -136,11 +136,10 @@ class Plugins:
         self.plugin_register[plugin.kind] = plugin
 
     def load_plugin_from_file(self, plugin_file_path: str):
-        for returned_class in get_modules_in_package(target_dir=plugin_file_path, logger=self.logger):
+        for returned_class, kind in get_modules_in_package(target_dir=plugin_file_path, logger=self.logger):
             self.logger.info('> cls.__class__:       {}'.format(returned_class.__class__))
             self.logger.info('> returned_class name: {}'.format(returned_class.__class__.__name__))
-            # if isinstance(returned_class, AppPluginBase):
-            #     self.register_plugin(plugin=returned_class(kind=returned_class.__class__.__name__, logger=self.logger))
+            self.register_plugin(plugin=returned_class(kind=kind, logger=self.logger))
         self.logger.info('Registered classes: {}'.format(list(self.plugin_register.keys())))
         
     def execute(self, kind: str, execution_reference: str, parameters:dict=dict(), store_result_in_values_api: bool=True)->PluginExecutionResult:
