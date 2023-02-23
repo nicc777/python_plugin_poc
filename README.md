@@ -8,7 +8,7 @@
 
 This experiment looks at how a plugin framework could work at it's most basic level.
 
-The application will load a custom plugin from the file `/tmp/test_plugin/my_plugin.py`, which in turn implements a base class from our application.
+The application will load two custom plugins from the file `/tmp/test_plugin/my_plugin.py` and `/tmp/second_test_plugin/my_second_plugin.py`, which in turn implements a base class from our application.
 
 Quick run (assuming the repository is freshly cloned):
 
