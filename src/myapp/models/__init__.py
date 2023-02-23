@@ -45,6 +45,8 @@ def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger(
                 if cls.__module__ == module_name:
                     m = importlib.import_module(module_name)
                     clazz = getattr(m, name)
+                    clazz_instance = clazz(kind=name, logger=logger)
+                    logger.info('            clazz_instance.version={}'.format(clazz_instance.version))
                     yield (clazz, name)
 
 
@@ -102,6 +104,7 @@ class AppPluginBase:
         self.logger = logger
         self.kind = kind
         self.properties = dict()
+        self.version = 'v1'
         logger.info('Plugin "{}" loaded'.format(self.__class__.__name__))
         self.post_init_tasks()
 
@@ -131,6 +134,7 @@ class Plugins:
         if isinstance(plugin, AppPluginBase) is False:
             raise Exception('Incorrect Base Class')
         self.plugin_register[plugin.kind.lower()] = plugin
+        self.logger.info('Registered plugin "{}" version {}'.format(plugin.__class__.__name__, plugin.version))
 
     def load_plugin_from_file(self, plugin_file_path: str):
         for returned_class, kind in get_modules_in_package(target_dir=plugin_file_path, logger=self.logger):
