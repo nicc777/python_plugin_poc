@@ -124,7 +124,7 @@ class Plugins:
     def register_plugin(self, plugin: AppPluginBase):
         if isinstance(plugin, AppPluginBase) is False:
             raise Exception('Incorrect Base Class')
-        self.plugin_register[plugin.kind] = plugin
+        self.plugin_register[plugin.kind.lower()] = plugin
 
     def load_plugin_from_file(self, plugin_file_path: str):
         for returned_class, kind in get_modules_in_package(target_dir=plugin_file_path, logger=self.logger):
@@ -138,4 +138,9 @@ class Plugins:
         if store_result_in_values_api:
             self.values_api.set_value(resolver_name='{}'.format(execution_reference), value=result.result)
         return result
+
+    def get_plugin_by_kind(self, kind: str):
+        if kind.lower() in self.plugin_register:
+            return self.plugin_register[kind.lower()]
+        raise Exception('Plugin kind "{}" not registered'.format(kind))
 
