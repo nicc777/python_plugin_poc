@@ -45,8 +45,8 @@ def get_modules_in_package(target_dir: str, logger: GenericLogger=GenericLogger(
                 if cls.__module__ == module_name:
                     m = importlib.import_module(module_name)
                     clazz = getattr(m, name)
-                    clazz_instance = clazz(kind=name, logger=logger)
-                    logger.info('            clazz_instance.version={}'.format(clazz_instance.version))
+                    # clazz_instance = clazz(kind=name, logger=logger)
+                    # logger.info('            clazz_instance.version={}'.format(clazz_instance.version))
                     yield (clazz, name)
 
 
