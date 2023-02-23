@@ -4,7 +4,7 @@
 > This is just an experiment. Not te be used in production
 
 > **Note**
-> Current status: Not yet fully functional
+> Current status: Working
 
 This experiment looks at how a plugin framework could work at it's most basic level.
 

@@ -19,6 +19,6 @@ class MySecondPlugin(AppPluginBase):
         except:
             value = 'Failed to retrieve the property from MyPlugin'
         result.set_result(result=value)
-        self.logger.info('Retrieved keys from current values cache: {}'.format(result.result))
+        self.logger.info('[{}:{}] result.result: {}'.format(self.kind, self.version, result.result))
         return result
 
