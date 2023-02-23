@@ -22,6 +22,7 @@ plugin_manager.register_plugin(plugin=Dummy(kind='Dummy', logger=logger))
 
 
 my_plugin_path = '/tmp/test_plugin'
+my_second_plugin = '/tmp/second_test_plugin'
 
 
 def main():
@@ -30,6 +31,8 @@ def main():
     logger.info('Current values: {}'.format(values_api.value_cache))
 
     plugin_manager.load_plugin_from_file(plugin_file_path=my_plugin_path)
+    plugin_manager.load_plugin_from_file(plugin_file_path=my_second_plugin)
+
     plugin_manager.execute(kind='MyPlugin', execution_reference='test', parameters=dict(), store_result_in_values_api=True)
     logger.info('Current values: {}'.format(values_api.value_cache))
 

@@ -1,11 +1,10 @@
 from myapp.models import *
 
 
-class MyPlugin(AppPluginBase):
+class MySecondPlugin(AppPluginBase):
 
     def __init__(self, kind: str, logger=GenericLogger()):
         super().__init__(kind, logger)
-        self.some_internal_val = 123
 
     def post_init_tasks(self, parameters: dict=dict()):
         self.logger.info('Executing initial tasks for {}'.format(self.__class__.__name__))

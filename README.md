@@ -29,13 +29,12 @@ The expected output should be something like this:
 ```text
 INFO    : Plugin "Dummy" loaded
 INFO    : Executing initial tasks for Dummy
-INFO    : Current values: {'random_word_length': 100, 'random_word': 'zNvV0hWqjPdF3e0U6qJrlkxBNJutC3CDtSLZfsgws3f7MIZfRRov9xipb24HWRrftr4OaFs8pOJTTCVyeWTTts1P0ZrgBe0UtCgr'}
-DEBUG   : current_word=zNvV0hWqjPdF3e0U6qJrlkxBNJutC3CDtSLZfsgws3f7MIZfRRov9xipb24HWRrftr4OaFs8pOJTTCVyeWTTts1P0ZrgBe0UtCgr
+INFO    : Current values: {'random_word_length': 100, 'random_word': 'wX4nlnb8ATIxLWsMZKEL08FWveC0K4iQLGSMnBHxJH1WYKTpD1eaC1sDeOu9iVGGjAevu11IG5kPGv7R5YJbCH67J0y3t0liWkg8'}
+DEBUG   : current_word=wX4nlnb8ATIxLWsMZKEL08FWveC0K4iQLGSMnBHxJH1WYKTpD1eaC1sDeOu9iVGGjAevu11IG5kPGv7R5YJbCH67J0y3t0liWkg8
 DEBUG   : slice_size=12
-DEBUG   : POST PROCESSING: current_word=zNvV0hWqjPdF
-INFO    : Current values: {'random_word_length': 100, 'random_word': 'zNvV0hWqjPdF'}
-INFO    : files=['__pycache__', '__init__.py', 'my_plugin.py']
-INFO    :    inspecting file "__pycache__"
+DEBUG   : POST PROCESSING: current_word=wX4nlnb8ATIx
+INFO    : Current values: {'random_word_length': 100, 'random_word': 'wX4nlnb8ATIx'}
+INFO    : files=['__init__.py', 'my_plugin.py']
 INFO    :    inspecting file "__init__.py"
 INFO    :    inspecting file "my_plugin.py"
 INFO    :       module_name=my_plugin
@@ -53,9 +52,28 @@ INFO    :          ---------------------------------------
 INFO    :          name:       Plugins
 INFO    :          ---------------------------------------
 INFO    :          name:       ValuesAPI
-INFO    : Registered classes: ['Dummy', 'MyPlugin']
+INFO    : Registered classes: ['dummy', 'myplugin']
+INFO    : files=['my_second_plugin.py', '__init__.py']
+INFO    :    inspecting file "my_second_plugin.py"
+INFO    :       module_name=my_second_plugin
+INFO    :          ---------------------------------------
+INFO    :          name:       AppPluginBase
+INFO    :          ---------------------------------------
+INFO    :          name:       GenericLogger
+INFO    :          ---------------------------------------
+INFO    :          name:       MySecondPlugin
+INFO    : Plugin "MySecondPlugin" loaded
+INFO    : Executing initial tasks for MySecondPlugin
+INFO    :          ---------------------------------------
+INFO    :          name:       PluginExecutionResult
+INFO    :          ---------------------------------------
+INFO    :          name:       Plugins
+INFO    :          ---------------------------------------
+INFO    :          name:       ValuesAPI
+INFO    :    inspecting file "__init__.py"
+INFO    : Registered classes: ['dummy', 'myplugin', 'mysecondplugin']
 INFO    : Retrieved keys from current values cache: ['random_word_length', 'random_word']
-INFO    : Current values: {'random_word_length': 100, 'random_word': 'zNvV0hWqjPdF', 'test': ['random_word_length', 'random_word']}
+INFO    : Current values: {'random_word_length': 100, 'random_word': 'wX4nlnb8ATIx', 'test': ['random_word_length', 'random_word']}
 ```
 
 # Further Reading and Helpful Links

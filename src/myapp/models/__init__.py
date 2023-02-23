@@ -101,6 +101,7 @@ class AppPluginBase:
     def __init__(self, kind: str, logger=GenericLogger()):
         self.logger = logger
         self.kind = kind
+        self.properties = dict()
         logger.info('Plugin "{}" loaded'.format(self.__class__.__name__))
         self.post_init_tasks()
 
@@ -109,9 +110,14 @@ class AppPluginBase:
         """
         pass
 
-    def exec(self, values_api: ValuesAPI, execution_reference: str, parameters: dict=dict())->PluginExecutionResult:
+    def exec(self, values_api: ValuesAPI, execution_reference: str, parameters: dict=dict(), function_get_plugin_by_kind: object=None)->PluginExecutionResult:
         self.logger.warning('This method must be implemented by the user')        
         return PluginExecutionResult(plugin_name=self.__class__.__name__, execution_reference=execution_reference).set_result(result=Exception("Not yet implemented by user"))
+
+    def get_property_value(self, property_reference: str):
+        if property_reference.lower() in self.properties:
+            return self.properties[property_reference.lower()]
+        raise Exception('Property reference "{}" not found'.format(property_reference))
 
 
 class Plugins:
@@ -132,9 +138,9 @@ class Plugins:
         self.logger.info('Registered classes: {}'.format(list(self.plugin_register.keys())))
         
     def execute(self, kind: str, execution_reference: str, parameters:dict=dict(), store_result_in_values_api: bool=True)->PluginExecutionResult:
-        if kind not in self.plugin_register:
+        if kind.lower() not in self.plugin_register:
             raise Exception('No plugin handler for "{}" kind found'.format(kind))
-        result = self.plugin_register[kind].exec(values_api=copy.deepcopy(self.values_api), execution_reference=execution_reference, parameters=parameters)
+        result = self.plugin_register[kind.lower()].exec(values_api=copy.deepcopy(self.values_api), execution_reference=execution_reference, parameters=parameters, function_get_plugin_by_kind=self.get_plugin_by_kind)
         if store_result_in_values_api:
             self.values_api.set_value(resolver_name='{}'.format(execution_reference), value=result.result)
         return result

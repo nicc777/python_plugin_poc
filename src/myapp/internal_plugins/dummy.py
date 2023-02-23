@@ -9,7 +9,7 @@ class Dummy(AppPluginBase):
     def post_init_tasks(self, parameters: dict=dict()):
         self.logger.info('Executing initial tasks for {}'.format(self.__class__.__name__))
 
-    def exec(self, values_api: ValuesAPI, execution_reference: str, parameters: dict=dict())->PluginExecutionResult:
+    def exec(self, values_api: ValuesAPI, execution_reference: str, parameters: dict=dict(), function_get_plugin_by_kind: object=None)->PluginExecutionResult:
         current_word = values_api.get_value(resolver_name='random_word', default_value='not-found')
         self.logger.debug('current_word={}'.format(current_word))
         slice_size = 12
